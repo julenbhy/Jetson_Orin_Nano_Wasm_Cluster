@@ -111,6 +111,10 @@ python3 tools/build_libtorch.py
 
 > **Note:** The build process requires around **30 GB of RAM or swap**. If the `/include` directory isn’t properly generated, copy it manually from the official release package.
 
+## Install PyTorch (optional)
+
+Follow this tutorial: https://ninjalabo.ai/blogs/jetson_pytorch.html
+
 ---
 
 ## Future Work
@@ -126,5 +130,6 @@ python3 tools/build_libtorch.py
 
 - [Jetson Initial Setup (SDK Manager Method)](https://www.jetson-ai-lab.com/initial_setup_jon_sdkm.html)
 - [Building a GPU-Enabled Kubernetes Cluster for Jetson Nano](https://medium.com/jit-team/building-a-gpu-enabled-kubernets-cluster-for-machine-learning-with-nvidia-jetson-nano-7b67de74172a)
+- [How to Easily Install PyTorch on Jetson Orin Nano running JetPack 6.2](https://ninjalabo.ai/blogs/jetson_pytorch.html)
 - [Jetson Orin Nano Specification (PDF)](https://developer.download.nvidia.com/assets/embedded/secure/jetson/orin_nano/docs/Jetson-Orin-Nano-DevKit-Carrier-Board-Specification_SP-11324-001_v1.3.pdf?__token__=exp=1760978813~hmac=dfdf13dfacb034ce507c8e1a466d199d7faabd1d7fd1f9b79e57c2eca3cc4bef&t=eyJscyI6ImdzZW8iLCJsc2QiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyJ9)
 ---
