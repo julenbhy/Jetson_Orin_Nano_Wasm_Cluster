@@ -1,19 +1,32 @@
-# setup.sh
-#!/bin/bash
-# Main setup script for Jetson Orin Nano WASM cluster
+#!/usr/bin/env bash
+# Main setup script for Jetson Orin Nano WASM Cluster
+# Run this script as root or with sudo privileges
 
 set -e
 
-echo "=== Starting Jetson Orin Nano setup ==="
+echo "=============================================="
+echo "   Jetson Orin Nano - WASM Cluster Setup"
+echo "=============================================="
+
+SCRIPTS_DIR="$(dirname "$0")"
+
+# Ensure running as root
+if [[ $EUID -ne 0 ]]; then
+  echo "Please run as root or with sudo"
+  exit 1
+fi
 
 echo "Step 1: System configuration"
-bash ./system.sh
+bash "$SCRIPTS_DIR/system.sh"
 
-echo "Step 2: Docker configuration"
-bash ./docker.sh
+echo "Step 2: Network configuration"
+bash "$SCRIPTS_DIR/network.sh"
 
-echo "Step 3: Build libtorch for WASI-NN"
-bash ./libtorch.sh
+echo "Step 3: Docker configuration"
+bash "$SCRIPTS_DIR/docker.sh"
+
+#echo "Step 4: Build libtorch for WASI-NN"
+#bash "$SCRIPTS_DIR/libtorch.sh"
 
 # Can't disable swap before building libtorch, as it may require more memory
 echo "Disabling swap..."

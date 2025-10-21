@@ -1,32 +1,50 @@
-# libtorch.sh
-#!/bin/bash
-# Build libtorch v2.4.0 for WASI-NN and move to /opt
+#!/usr/bin/env bash
+# Build libtorch v2.4.0 from source for WASI-NN
+# Creates a 40GB temporary swapfile to prevent OOM
 
 set -e
 
-# Directory for temporary build
-BUILD_DIR=$(mktemp -d)
-INSTALL_DIR="/opt/pytorch-v2.4.0"
+SWAPFILE="/mnt/torch_swapfile"
+SWAPSIZE="40G"
 
-echo "Building libtorch v2.4.0 in temporary directory: $BUILD_DIR"
+echo "[7/7] Preparing to build libtorch v2.4.0 (this may take several hours)..."
 
-echo "Installing dependencies..."
-sudo apt-get install -y cmake python3-dev python3-pip git build-essential
+# Step 1: Create temporary swap
+echo "Creating temporary ${SWAPSIZE} swapfile at ${SWAPFILE}..."
+sudo fallocate -l ${SWAPSIZE} ${SWAPFILE} || sudo dd if=/dev/zero of=${SWAPFILE} bs=1G count=40
+sudo chmod 600 ${SWAPFILE}
+sudo mkswap ${SWAPFILE}
+sudo swapon ${SWAPFILE}
 
-echo "Cloning PyTorch v2.4.0..."
-git clone --branch v2.4.0 --recursive https://github.com/pytorch/pytorch.git "$BUILD_DIR/pytorch"
-cd "$BUILD_DIR/pytorch"
+echo "Temporary swap enabled:"
+swapon --show
 
-echo "Building libtorch..."
+# Step 2: Build libtorch
+cd ~/Downloads
+
+if [[ ! -d pytorch ]]; then
+  echo "Cloning PyTorch repository (v2.4.0)..."
+  git clone --branch v2.4.0 --recursive https://github.com/pytorch/pytorch.git
+else
+  echo "PyTorch repo already exists, pulling latest commits for v2.4.0..."
+  cd pytorch
+  git fetch --all
+  git checkout v2.4.0
+  git submodule update --init --recursive
+fi
+
+cd pytorch
+echo "Starting libtorch build..."
 python3 tools/build_libtorch.py
 
-echo "Moving libtorch to $INSTALL_DIR..."
-sudo mkdir -p "$INSTALL_DIR"
-sudo mv "$BUILD_DIR/pytorch"/* "$INSTALL_DIR"
+echo "libtorch build complete."
 
-echo "Setting permissions..."
-sudo chown -R root:root "$INSTALL_DIR"
-sudo chmod -R 755 "$INSTALL_DIR"
+# Step 3: Disable and remove temporary swap
+echo "Removing temporary swapfile..."
+sudo swapoff ${SWAPFILE}
+sudo rm -f ${SWAPFILE}
 
-echo "Libtorch build finished and installed at $INSTALL_DIR."
-echo "Reminder: if /include is missing, copy it from the official release."
+echo "Temporary swap removed."
+swapon --show
+
+echo "[6/6] libtorch build finished successfully. System restored."
