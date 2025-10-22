@@ -32,6 +32,7 @@ For our setup, we’ll only use **two wires**:
 The **yellow** TACH wire can be ignored or removed.
 
 *(Insert image of fan wires here)*
+![alt text](https://europe1.discourse-cdn.com/arduino/original/4X/6/1/2/612cffb8df33a95d9ef9dc9200779ec41e266c38.jpeg)
 
 ---
 
