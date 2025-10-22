@@ -37,7 +37,7 @@ The **yellow** TACH wire will be removed.
 
 ## Step 2: Check the Jetson Orin Nano Pinout
 
-Refer to the Jetson Orin Nano pinout diagram (*Image 2*).  
+Refer to the Jetson Orin Nano pinout diagram.  
 You’ll find that:
 
 | Pin | Function |
