@@ -97,7 +97,7 @@ After the swap:
 
 Plug the modified connector into the Jetson GPIO header as shown in the image.
 
-![Fan wiring](images/jetson_fan.jpeg)
+![Fan wiring](../images/jetson_fan.jpeg)
 
 When you power on your Jetson:
 - The fan should start spinning at a **reduced speed**.
