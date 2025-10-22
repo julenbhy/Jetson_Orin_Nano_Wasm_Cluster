@@ -29,9 +29,8 @@ For our setup, we’ll only use **two wires**:
 - **Red** (power)
 - **Black** (ground)
 
-The **yellow** TACH wire can be ignored or removed.
+The **yellow** TACH wire will be removed.
 
-*(Insert image of fan wires here)*
 ![alt text](https://europe1.discourse-cdn.com/arduino/original/4X/6/1/2/612cffb8df33a95d9ef9dc9200779ec41e266c38.jpeg)
 
 ---
@@ -46,7 +45,7 @@ You’ll find that:
 | **Pin 2 / Pin 4** | +5V |
 | **Pin 6** | GND |
 
-*(Insert Jetson pinout image here)*
+![alt text](https://files.seeedstudio.com/wiki/reComputer-Jetson-Nano/59.png)
 
 Notice that there are **no 12V pins** available on the Jetson.  
 However, running a 12V fan at 5V **won’t damage it**, simply makes it spin more slowly and quietly. till providing enough airflow for most cooling needs.
@@ -65,12 +64,9 @@ Now we need to wire it so that:
 - The **red wire** connects to **Pin 4 (5V)**.
 - The **black wire** connects to **Pin 6 (GND)**.
 
-You can **remove the yellow wire** from the 3-pin connector entirely to avoid any confusion.
-
 ## Step 4: Remove Tachometric Signal
 
-This setup would leave the yellow wire connected to another 5V pin.
-Receiving 5V would set the fan to its lowest possible speed. However, since the fan is already operating well below its rated 12V, it is likely spinning below its minimum nominal speed anyway, so this won’t cause any issues.
+Receiving 5V from the yellow wire would set the fan to its lowest possible speed. However, since the fan is already operating well below its rated 12V, it is likely spinning below its minimum nominal speed anyway, so this won’t cause any issues.
 
 Still, we’ll remove this wire to make sure it doesn’t further reduce the fan’s speed, and because we’ll need the slot it frees up in the next step.
 
@@ -99,16 +95,13 @@ After the swap:
 
 ## Step 6: Connect and Test
 
-Plug the modified connector into the Jetson GPIO header as shown in the diagram.
+Plug the modified connector into the Jetson GPIO header as shown in the image.
 
-*(Insert image of connected fan)*
+![Fan wiring](images/jetson_fan.jpeg)
 
 When you power on your Jetson:
 - The fan should start spinning at a **reduced speed**.
 - It will be **quiet** but still effective enough to cool your device during light or moderate workloads.
 
-If the fan does not spin:
-- Double-check your pin alignment.
-- Ensure the wires are securely inserted and making contact.
 
 ---
