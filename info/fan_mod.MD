@@ -99,6 +99,9 @@ Plug the modified connector into the Jetson GPIO header as shown in the image.
 
 ![Fan wiring](../images/jetson_fan.jpeg)
 
+<img src="../images/jetson_fan.jpeg" alt="Fan wiring" width="400"/>
+
+
 When you power on your Jetson:
 - The fan should start spinning at a **reduced speed**.
 - It will be **quiet** but still effective enough to cool your device during light or moderate workloads.
