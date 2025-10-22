@@ -8,7 +8,7 @@ This guide explains how to adapt a standard tower fan for use with the **Jetson 
 
 Old PC tower fans often use one of two connector types:
 - **Molex (4-pin)** for power supply units.
-- **3-pin motherboard fan connector** (as shown in *Image 1*).
+- **3-pin motherboard fan connector**.
 
 Unfortunately, the **Jetson Orin Nano** does not support either of these connection types directly.  
 In this tutorial, we’ll modify the fan so it can be powered through the **GPIO header** on the Jetson.
@@ -31,7 +31,6 @@ For our setup, we’ll only use **two wires**:
 
 The **yellow** TACH wire will be removed.
 
-![alt text](https://m.media-amazon.com/images/I/61eIh-qL51S._SL1001_.jpg)
 <img src="https://m.media-amazon.com/images/I/61eIh-qL51S._SL1001_.jpg" alt="3 pin heather" width="400"/>
 
 ---
@@ -46,7 +45,6 @@ You’ll find that:
 | **Pin 2 / Pin 4** | +5V |
 | **Pin 6** | GND |
 
-![alt text](https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/user_guide/images/jonano_cbspec_figure_3-1_white-bg.png)
 <img src="https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/user_guide/images/jonano_cbspec_figure_3-1_white-bg.png" alt="Jetson Pinout" width="400"/>
 
 Notice that there are **no 12V pins** available on the Jetson.  
