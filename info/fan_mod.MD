@@ -32,6 +32,7 @@ For our setup, we’ll only use **two wires**:
 The **yellow** TACH wire will be removed.
 
 ![alt text](https://m.media-amazon.com/images/I/61eIh-qL51S._SL1001_.jpg)
+<img src="https://m.media-amazon.com/images/I/61eIh-qL51S._SL1001_.jpg" alt="3 pin heather" width="400"/>
 
 ---
 
@@ -46,6 +47,7 @@ You’ll find that:
 | **Pin 6** | GND |
 
 ![alt text](https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/user_guide/images/jonano_cbspec_figure_3-1_white-bg.png)
+<img src="https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/user_guide/images/jonano_cbspec_figure_3-1_white-bg.png" alt="Jetson Pinout" width="400"/>
 
 Notice that there are **no 12V pins** available on the Jetson.  
 However, running a 12V fan at 5V **won’t damage it**, simply makes it spin more slowly and quietly. till providing enough airflow for most cooling needs.
@@ -96,8 +98,6 @@ After the swap:
 ## Step 6: Connect and Test
 
 Plug the modified connector into the Jetson GPIO header as shown in the image.
-
-![Fan wiring](../images/jetson_fan.jpeg)
 
 <img src="../images/jetson_fan.jpeg" alt="Fan wiring" width="400"/>
 
