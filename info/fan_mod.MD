@@ -31,7 +31,7 @@ For our setup, we’ll only use **two wires**:
 
 The **yellow** TACH wire will be removed.
 
-![alt text](https://europe1.discourse-cdn.com/arduino/original/4X/6/1/2/612cffb8df33a95d9ef9dc9200779ec41e266c38.jpeg)
+![alt text](https://m.media-amazon.com/images/I/61eIh-qL51S._SL1001_.jpg)
 
 ---
 
@@ -45,7 +45,7 @@ You’ll find that:
 | **Pin 2 / Pin 4** | +5V |
 | **Pin 6** | GND |
 
-![alt text](https://files.seeedstudio.com/wiki/reComputer-Jetson-Nano/59.png)
+![alt text](https://developer.download.nvidia.com/embedded/images/jetsonOrinNano/user_guide/images/jonano_cbspec_figure_3-1_white-bg.png)
 
 Notice that there are **no 12V pins** available on the Jetson.  
 However, running a 12V fan at 5V **won’t damage it**, simply makes it spin more slowly and quietly. till providing enough airflow for most cooling needs.
