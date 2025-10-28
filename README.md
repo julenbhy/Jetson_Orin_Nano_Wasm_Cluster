@@ -143,4 +143,5 @@ Follow this tutorial: https://ninjalabo.ai/blogs/jetson_pytorch.html
 ## Troubleshooting
 
 - [Browser launching error](https://forums.developer.nvidia.com/t/fresh-jetpack-flash-on-agx-orin-selinux-error-matchpathcon-not-found-prevents-snap-apps-from-running/339022)
+- Install vscode: download .deb for Arm64 Ubuntu from https://code.visualstudio.com/download
 ---
