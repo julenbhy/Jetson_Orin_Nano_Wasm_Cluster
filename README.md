@@ -65,6 +65,11 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 ```
 
+### 4. Install jtop for system monitoring
+```bash
+sudo -H pip install -U jetson-stats
+```
+
 ### 4. Disable Swap
 ```bash
 sudo swapoff -a
