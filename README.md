@@ -137,4 +137,10 @@ Follow this tutorial: https://ninjalabo.ai/blogs/jetson_pytorch.html
 - [Building a GPU-Enabled Kubernetes Cluster for Jetson Nano](https://medium.com/jit-team/building-a-gpu-enabled-kubernets-cluster-for-machine-learning-with-nvidia-jetson-nano-7b67de74172a)
 - [How to Easily Install PyTorch on Jetson Orin Nano running JetPack 6.2](https://ninjalabo.ai/blogs/jetson_pytorch.html)
 - [Jetson Orin Nano Specification (PDF)](https://developer.download.nvidia.com/assets/embedded/secure/jetson/orin_nano/docs/Jetson-Orin-Nano-DevKit-Carrier-Board-Specification_SP-11324-001_v1.3.pdf?__token__=exp=1760978813~hmac=dfdf13dfacb034ce507c8e1a466d199d7faabd1d7fd1f9b79e57c2eca3cc4bef&t=eyJscyI6ImdzZW8iLCJsc2QiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyJ9)
+
+
+
+## Troubleshooting
+
+- [Browser launching error](https://forums.developer.nvidia.com/t/fresh-jetpack-flash-on-agx-orin-selinux-error-matchpathcon-not-found-prevents-snap-apps-from-running/339022)
 ---
