@@ -3,7 +3,7 @@
 
 set -e
 
-TEMPLATE_DIR="$(dirname "$0")/templates"
+TEMPLATE_DIR="$(dirname "$0")/config_files"
 NETPLAN_FILE="/etc/netplan/01-netcfg.yaml"
 
 echo "[4/7] Configuring network..."
@@ -21,13 +21,13 @@ echo "Current IP: $CURRENT_IP"
 read -p "Enter the new static IP to assign (e.g., 192.168.1.100/24): " NEW_IP
 
 # Step 4: Copy template
-if [[ ! -f "$TEMPLATE_DIR/netplan_template.yaml" ]]; then
+if [[ ! -f "$TEMPLATE_DIR/netplan.yaml" ]]; then
     echo "ERROR: Netplan template not found in $TEMPLATE_DIR"
     exit 1
 fi
 
 echo "Copying template to $NETPLAN_FILE"
-sudo cp "$TEMPLATE_DIR/netplan_template.yaml" "$NETPLAN_FILE"
+sudo cp "$TEMPLATE_DIR/netplan.yaml" "$NETPLAN_FILE"
 
 # Step 5: Replace placeholder with actual IP
 sudo sed -i "s/{{IP_ADDRESS}}/${NEW_IP}/g" "$NETPLAN_FILE"
