@@ -18,6 +18,7 @@ CURRENT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -
 echo "Current IP: $CURRENT_IP"
 
 # Step 3: Ask user for new static IP
+read -p "Enter the gateway IP (e.g., 192.168.1.1): " GATEWAY_IP
 read -p "Enter the new static IP to assign including the mask (e.g., 192.168.1.100/24): " NEW_IP
 
 # Step 4: Copy template
@@ -30,7 +31,8 @@ echo "Copying template to $NETPLAN_FILE"
 sudo cp "$TEMPLATE_DIR/netplan.yaml" "$NETPLAN_FILE"
 
 # Step 5: Replace placeholder with actual IP
-sudo sed -i "s/{{IP_ADDRESS}}/${NEW_IP}/g" "$NETPLAN_FILE"
+sudo sed -i "s|{{IP_ADDRESS}}|${NEW_IP}|g" "$NETPLAN_FILE"
+sudo sed -i "s|{{GATEWAY}}|${GATEWAY_IP}|g" "$NETPLAN_FILE"
 
 # Step 6: Apply netplan
 echo "→ Applying netplan configuration..."
