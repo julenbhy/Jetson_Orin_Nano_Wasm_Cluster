@@ -18,7 +18,7 @@ else
 fi
 
 # Step 2: Show current IP
-CURRENT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d/ -f1 | head -n1)
+CURRENT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | head -n1)
 echo "Current IP: $CURRENT_IP"
 
 # Step 3: Ask user for new static IP
