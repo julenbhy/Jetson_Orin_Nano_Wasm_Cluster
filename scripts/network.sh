@@ -33,6 +33,7 @@ fi
 
 echo "Copying template to $NETPLAN_FILE"
 sudo cp "$TEMPLATE_DIR/netplan.yaml" "$NETPLAN_FILE"
+sudo chmod 600 "$NETPLAN_FILE"
 
 # Step 5: Replace placeholder with actual IP
 sudo sed -i "s|{{IP_ADDRESS}}|${NEW_IP}|g" "$NETPLAN_FILE"
