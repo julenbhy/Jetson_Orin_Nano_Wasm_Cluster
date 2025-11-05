@@ -46,6 +46,7 @@ if [[ "$IS_MASTER" == "y" || "$IS_MASTER" == "Y" ]]; then
     sudo chown $USER:$USER ~/.kube/config
 
     # Step 5: Retrieve join token for workers
+    echo "→ K3s server installed. Printing config info..."
     TOKEN_FILE="/var/lib/rancher/k3s/server/node-token"
     if sudo [ -f "$TOKEN_FILE" ]; then
         NODE_TOKEN=$(sudo cat "$TOKEN_FILE")
