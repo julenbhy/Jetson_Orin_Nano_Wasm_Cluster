@@ -47,7 +47,7 @@ if [[ "$IS_MASTER" == "y" || "$IS_MASTER" == "Y" ]]; then
 
     # Step 5: Retrieve join token for workers
     TOKEN_FILE="/var/lib/rancher/k3s/server/node-token"
-    if [[ -f "$TOKEN_FILE" ]]; then
+    if sudo [ -f "$TOKEN_FILE" ]; then
         NODE_TOKEN=$(sudo cat "$TOKEN_FILE")
         MASTER_IP=$(hostname -I | awk '{print $1}')
         echo "=============================================="
@@ -67,7 +67,7 @@ if [[ "$IS_MASTER" == "y" || "$IS_MASTER" == "Y" ]]; then
 
 else
     echo "→ Setting up WORKER node..."
-    read -p "Enter MASTER node IP (e.g., 192.168.1.100): " MASTER_IP
+    read -p "Enter MASTER node IP (e.g., 192.168.1.101): " MASTER_IP
     read -p "Enter the NODE TOKEN from the master: " NODE_TOKEN
 
     # Step 3: Install K3s as worker
