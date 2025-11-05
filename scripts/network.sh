@@ -18,7 +18,7 @@ CURRENT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -
 echo "Current IP: $CURRENT_IP"
 
 # Step 3: Ask user for new static IP
-read -p "Enter the new static IP to assign (e.g., 192.168.1.100/24): " NEW_IP
+read -p "Enter the new static IP to assign including the mask (e.g., 192.168.1.100/24): " NEW_IP
 
 # Step 4: Copy template
 if [[ ! -f "$TEMPLATE_DIR/netplan.yaml" ]]; then
