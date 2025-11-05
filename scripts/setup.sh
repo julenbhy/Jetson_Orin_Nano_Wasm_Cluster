@@ -25,8 +25,13 @@ bash "$SCRIPTS_DIR/network.sh"
 echo "Step 3: Docker configuration"
 bash "$SCRIPTS_DIR/docker.sh"
 
-#echo "Step 4: Build libtorch for WASI-NN"
+echo "Step 4: Configure Kubernetes (K3s)"
+bash "$SCRIPTS_DIR/Kubernetes.sh"
+
+#echo "Step 5: Build libtorch for WASI-NN"
 #bash "$SCRIPTS_DIR/libtorch.sh"
+
+
 
 # Can't disable swap before building libtorch, as it may require more memory
 echo "Disabling swap..."
