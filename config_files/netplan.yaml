@@ -5,6 +5,8 @@ network:
       dhcp4: no
       addresses:
         - {{IP_ADDRESS}}
-      gateway4:  {{GATEWAY}}
+      routes:
+        - to: default
+        via:  {{GATEWAY}}
       nameservers:
         addresses: [8.8.8.8,8.8.4.4]
