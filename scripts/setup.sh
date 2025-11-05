@@ -26,7 +26,7 @@ echo "Step 3: Docker configuration"
 bash "$SCRIPTS_DIR/docker.sh"
 
 echo "Step 4: Configure Kubernetes (K3s)"
-bash "$SCRIPTS_DIR/Kubernetes.sh"
+bash "$SCRIPTS_DIR/K3s.sh"
 
 #echo "Step 5: Build libtorch for WASI-NN"
 #bash "$SCRIPTS_DIR/libtorch.sh"
