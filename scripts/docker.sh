@@ -7,6 +7,7 @@ echo "[5/7] Configuring Docker with NVIDIA runtime..."
 # Ensure docker group exists
 sudo groupadd docker || true
 sudo usermod -aG docker $USER
+newgrp docker
 
 # Paths
 DOCKER_DIR="/etc/docker"
