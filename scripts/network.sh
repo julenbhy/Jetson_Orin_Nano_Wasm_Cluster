@@ -3,15 +3,19 @@
 
 set -e
 
-TEMPLATE_DIR="$(dirname "$0")/config_files"
+TEMPLATE_DIR="./config_files"
 NETPLAN_FILE="/etc/netplan/01-netcfg.yaml"
 
 echo "[4/7] Configuring network..."
 
 # Step 1: Install netplan
-echo "Installing netplan.io if not present..."
-sudo apt-get update
-sudo apt-get install -y netplan.io
+if ! dpkg -s netplan.io >/dev/null 2>&1; then
+    echo "netplan.io not found. Installing..."
+    sudo apt-get update
+    sudo apt-get install -y netplan.io
+else
+    echo "netplan.io is already installed. Skipping installation."
+fi
 
 # Step 2: Show current IP
 CURRENT_IP=$(ip -4 addr show scope global | grep inet | awk '{print $2}' | cut -d/ -f1 | head -n1)
