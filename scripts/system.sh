@@ -2,8 +2,6 @@
 # System configuration script
 
 set -e
-echo "[1/7] Disabling GUI mode... Will take effect after reboot."
-#sudo systemctl set-default multi-user.target
 
 echo "[2/7] Setting MAXN_SUPER power mode..."
 sudo nvpmodel -m 2
@@ -18,4 +16,7 @@ sudo apt-get full-upgrade -y
 #sudo swapoff -a
 #sudo sed -i.bak '/ swap / s/^/#/' /etc/fstab
 
-echo "System configuration done."
+echo "[1/7] Disabling GUI mode... Will take effect after reboot."
+#sudo systemctl set-default multi-user.target
+
+echo "System configuration done. Reboot the system"
