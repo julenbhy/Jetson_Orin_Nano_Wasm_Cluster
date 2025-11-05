@@ -5,20 +5,43 @@ set -e
 
 echo "[5/7] Configuring Kubernetes (K3s)..."
 
-# Step 1: Ask node role
+
+
+# Step 1: Check if K3s is already installed
+if command -v k3s >/dev/null 2>&1; then
+    echo "K3s binary already detected in system."
+    if systemctl is-active --quiet k3s; then
+        echo "K3s service is active (master node)."
+    elif systemctl is-active --quiet k3s-agent; then
+        echo "K3s agent service is active (worker node)."
+    fi
+
+    read -p "K3s seems to be already installed. Do you want to reinstall it? [y/N]: " REINSTALL
+    if [[ "$REINSTALL" != "y" && "$REINSTALL" != "Y" ]]; then
+        echo "Skipping K3s installation."
+        exit 0
+    else
+        echo "→ Removing existing K3s installation..."
+        /usr/local/bin/k3s-uninstall.sh || /usr/local/bin/k3s-agent-uninstall.sh || true
+        echo "Previous K3s installation removed."
+    fi
+fi
+
+
+# Step 2: Ask node role
 read -p "Is this node the master (control-plane)? [y/n]: " IS_MASTER
 
 if [[ "$IS_MASTER" == "y" || "$IS_MASTER" == "Y" ]]; then
     echo "→ Setting up MASTER node..."
 
-    # Step 2: Ensure .kube directory exists
+    # Step 3: Ensure .kube directory exists
     mkdir -p $HOME/.kube
 
-    # Step 3: Install K3s as master node using Docker
+    # Step 4: Install K3s as master node using Docker
     echo "→ Installing K3s server..."
     curl -sfL https://get.k3s.io | sh -
 
-    # Step 4: Copy config file and adjust perms
+    # Step 5: Copy config file and adjust perms
     sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
     sudo chown $USER:$USER ~/.kube/config
 
@@ -47,7 +70,7 @@ else
     read -p "Enter MASTER node IP (e.g., 192.168.1.100): " MASTER_IP
     read -p "Enter the NODE TOKEN from the master: " NODE_TOKEN
 
-    # Step 2: Install K3s as worker
+    # Step 3: Install K3s as worker
     echo "→ Installing K3s agent..."
     curl -sfL https://get.k3s.io | K3S_URL="https://$MASTER_IP:6443" K3S_TOKEN="$NODE_TOKEN" INSTALL_K3S_EXEC="--docker" sh -
 
