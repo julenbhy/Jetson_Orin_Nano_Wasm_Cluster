@@ -12,7 +12,6 @@ else
   echo "Docker group already exists."
 fi
 sudo usermod -aG docker $USER
-newgrp docker
 
 # Paths
 DOCKER_DIR="/etc/docker"
