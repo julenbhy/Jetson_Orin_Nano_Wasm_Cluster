@@ -5,7 +5,12 @@ set -e
 echo "[5/7] Configuring Docker with NVIDIA runtime..."
 
 # Ensure docker group exists
-sudo groupadd docker || true
+if ! getent group docker >/dev/null; then
+  echo "Creating docker group..."
+  sudo groupadd docker
+else
+  echo "Docker group already exists."
+fi
 sudo usermod -aG docker $USER
 newgrp docker
 
