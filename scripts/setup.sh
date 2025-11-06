@@ -10,12 +10,6 @@ echo "=============================================="
 
 SCRIPTS_DIR="$(dirname "$0")"
 
-# Ensure running as root
-if [[ $EUID -ne 0 ]]; then
-  echo "Please run as root or with sudo"
-  exit 1
-fi
-
 echo "Step 1: System configuration"
 bash "$SCRIPTS_DIR/system.sh"
 
