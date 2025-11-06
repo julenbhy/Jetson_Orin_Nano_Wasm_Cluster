@@ -31,11 +31,4 @@ bash "$SCRIPTS_DIR/K3s.sh"
 #echo "Step 5: Build libtorch for WASI-NN"
 #bash "$SCRIPTS_DIR/libtorch.sh"
 
-
-
-# Can't disable swap before building libtorch, as it may require more memory
-echo "Disabling swap..."
-sudo swapoff -a
-sudo sed -i.bak '/ swap / s/^/#/' /etc/fstab
-
 echo "=== Setup complete! Rebooting recommended ==="
