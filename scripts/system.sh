@@ -31,6 +31,9 @@ echo "[3/4] Updating and upgrading system packages..."
 sudo apt-get update
 sudo apt-get full-upgrade -y
 
+echo "[4/4] Installing jtop..."
+sudo pip3 install -U jetson-stats
+
 # Can't disable swap before building libtorch, as it may require more memory
 echo "[4/4] Disabling swap..."
 sudo swapoff -a
