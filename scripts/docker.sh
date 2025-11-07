@@ -16,7 +16,7 @@ sudo usermod -aG docker $USER
 # Paths
 DOCKER_DIR="/etc/docker"
 DAEMON_FILE="$DOCKER_DIR/daemon.json"
-CONFIG_FILE="$(dirname "$0")/config_files/docker_daemon.json"
+CONFIG_FILE="./config_files/docker_daemon.json"
 
 # Backup original daemon.json if exists
 if [[ -f "$DAEMON_FILE" ]]; then
@@ -34,6 +34,7 @@ sudo cp "$CONFIG_FILE" "$DAEMON_FILE"
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-echo "Docker configuration done. Verifying NVIDIA Docker setup..."
-docker run -it jitteam/devicequery ./deviceQuery
+echo "Docker configuration done."
+#echo "Verifying NVIDIA Docker setup..."
+#docker run -it jitteam/devicequery ./deviceQuery # Outdated 
 
