@@ -13,6 +13,9 @@ spec:
       labels:
         app: nginx-test
     spec:
+      # Only schedule on worker nodes (exclude control-plane/master)
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "false"
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
@@ -21,7 +24,7 @@ spec:
         - name: nginx
           image: nginx:alpine
           ports:
-            - containerPort: 8080   # Changed from 80 to 8080
+            - containerPort: 80
           resources:
             limits:
               cpu: "100m"
@@ -29,4 +32,3 @@ spec:
             requests:
               cpu: "50m"
               memory: "32Mi"
-          command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
