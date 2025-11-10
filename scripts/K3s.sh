@@ -42,10 +42,18 @@ if [[ "$IS_MASTER" == "y" || "$IS_MASTER" == "Y" ]]; then
     curl -sfL https://get.k3s.io | sh -
 
     # Step 5: Copy config file and adjust perms
-    sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-    sudo chown $USER:$USER ~/.kube/config
+    sudo cp /etc/rancher/k3s/k3s.yaml "$HOME/.kube/config"
+    sudo chown "$USER:$USER" "$HOME/.kube/config"
+    chmod 600 "$HOME/.kube/config"
 
-    # Step 5: Retrieve join token for workers
+    # Step 6: Persist KUBECONFIG environment variable
+    if ! grep -q "export KUBECONFIG=" "$HOME/.bashrc"; then
+        echo "export KUBECONFIG=\$HOME/.kube/config" >> "$HOME/.bashrc"
+        echo "→ Added KUBECONFIG export to ~/.bashrc"
+    fi
+    export KUBECONFIG="$HOME/.kube/config"
+
+    # Step 7: Retrieve join token for workers
     echo "→ K3s server installed. Printing config info..."
     TOKEN_FILE="/var/lib/rancher/k3s/server/node-token"
     if sudo [ -f "$TOKEN_FILE" ]; then
