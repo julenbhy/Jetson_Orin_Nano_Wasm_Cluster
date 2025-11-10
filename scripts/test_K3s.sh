@@ -71,12 +71,15 @@ fi
 echo "→ DaemonSet pod status:"
 kubectl get pods -n $TEST_NAMESPACE -o wide
 
-# Step 8: Test nginx inside one pod
-POD=$(kubectl get pod -n $TEST_NAMESPACE -o name | head -n 1)
-echo "→ Testing nginx response from pod: $POD"
-kubectl exec -n $TEST_NAMESPACE $POD -- wget -qO- localhost:80 | grep -q "Welcome to nginx" && \
-    echo "✅ Nginx response OK inside pod!" || \
-    echo "⚠️ Could not verify nginx response inside pod."
+# Step 8: Test nginx inside all pods
+echo "→ Testing nginx response inside all pods..."
+for POD in $(kubectl get pod -n $TEST_NAMESPACE -o name); do
+    echo "   Checking $POD ..."
+    kubectl exec -n $TEST_NAMESPACE $POD -- wget -qO- localhost:80 | grep -q "Welcome to nginx" \
+      && echo "   ✅ $POD: Nginx OK" \
+      || echo "   ⚠️ $POD: Nginx FAILED"
+done
+
 
 # Step 9: Cleanup
 read -p "Do you want to delete the DaemonSet and namespace? [Y/n]: " CLEAN
