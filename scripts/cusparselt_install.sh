@@ -18,8 +18,8 @@ curl --retry 3 -OLs "${CUSPARSELT_URL}/${CUSPARSELT_NAME}.tar.xz"
 tar xf "${CUSPARSELT_NAME}.tar.xz"
 
 # Install headers and libraries
-cp -a "${CUSPARSELT_NAME}/include/"* /usr/local/cuda/include/
-cp -a "${CUSPARSELT_NAME}/lib/"* /usr/local/cuda/lib64/
+sudo cp -a "${CUSPARSELT_NAME}/include/"* /usr/local/cuda/include/
+sudo cp -a "${CUSPARSELT_NAME}/lib/"* /usr/local/cuda/lib64/
 
 # Clean up
 cd ..
