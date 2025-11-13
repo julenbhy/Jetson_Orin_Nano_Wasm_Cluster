@@ -13,9 +13,6 @@ spec:
       labels:
         app: nginx-test
     spec:
-      # Only schedule on worker nodes (exclude control-plane/master)
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: "false"
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
