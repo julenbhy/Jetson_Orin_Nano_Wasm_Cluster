@@ -7,7 +7,6 @@ set -e
 SWAPFILE="/mnt/torch_swapfile"
 SWAPSIZE="40G"
 
-echo "[7/7] Preparing to build libtorch v2.4.0 (this may take several hours)..."
 
 # Step 1: Create temporary swap
 echo "Creating temporary ${SWAPSIZE} swapfile at ${SWAPFILE}..."
@@ -47,4 +46,3 @@ sudo rm -f ${SWAPFILE}
 echo "Temporary swap removed."
 swapon --show
 
-echo "[6/6] libtorch build finished successfully. System restored."

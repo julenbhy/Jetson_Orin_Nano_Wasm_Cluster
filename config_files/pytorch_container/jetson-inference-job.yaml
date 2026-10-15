@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jetson-pytorch-inference
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      runtimeClassName: nvidia
+      containers:
+        - name: inference
+          image: julenbhy/jetson-pytorch-inference:latest
+          imagePullPolicy: IfNotPresent
+          command: ["python3", "simple_inference.py"]
+          args: ["https://raw.githubusercontent.com/pytorch/hub/master/images/dog.jpg"]
